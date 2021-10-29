@@ -9,10 +9,6 @@ package pingpong;
  *
  * @author ewelina
  */
-
-
-   
-
 public class Player implements Runnable {
 
     private final String text;
@@ -21,7 +17,7 @@ public class Player implements Runnable {
 
     private Player nextPlayer;
 
-    private boolean mustPlay = false;
+    private volatile boolean mustPlay = false;
 
     public Player(String text) {
         this.text = text;
