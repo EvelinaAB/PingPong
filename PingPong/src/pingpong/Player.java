@@ -21,10 +21,15 @@ public class Player implements Runnable {
         this.text = text;
     }
 
-    @Override
     public void run() {
         while (!Thread.interrupted()) {
             while (!mustPlay);
+
+            try {
+                Thread.sleep(1);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
 
             System.out.println(text);
 

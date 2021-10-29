@@ -7,11 +7,7 @@ package pingpong;
  *
  * @author ewelina
  */
-
-
-  public class Game {
-
-    public static final int MAX_TURNS = 10;
+public class Game {
 
     public static void main(String[] args) {
 
@@ -29,9 +25,21 @@ package pingpong;
         thread2.start();
         Thread thread1 = new Thread(player1);
         thread1.start();
-        //se asegura que los hilos no van a ser interrumpidos
+
+        //Let the players play!
         try {
-            thread1.join(); 
+            Thread.sleep(2);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        //Tell the players to stop
+        thread1.interrupt();
+        thread2.interrupt();
+
+        //Wait until players finish
+        try {
+            thread1.join();
             thread2.join();
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -41,4 +49,3 @@ package pingpong;
     }
 
 }
-  
