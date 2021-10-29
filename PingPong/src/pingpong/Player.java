@@ -13,8 +13,6 @@ public class Player implements Runnable {
 
     private final String text;
 
-    private int turns = Game.MAX_TURNS;
-
     private Player nextPlayer;
 
     private volatile boolean mustPlay = false;
@@ -25,20 +23,15 @@ public class Player implements Runnable {
 
     @Override
     public void run() {
-        while (!gameFinished()) {
+        while (!Thread.interrupted()) {
             while (!mustPlay);
 
             System.out.println(text);
-            turns--;
 
             this.mustPlay = false;
             nextPlayer.mustPlay = true;
 
         }
-    }
-
-    private boolean gameFinished() {
-        return turns == 0;
     }
 
     public void setNextPlayer(Player nextPlayer) {
