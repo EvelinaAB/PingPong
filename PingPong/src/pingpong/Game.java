@@ -3,6 +3,9 @@
  */
 package pingpong;
 
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+
 /**
  *
  * @author ewelina
@@ -10,8 +13,7 @@ package pingpong;
 public class Game {
 
     public static void main(String[] args) {
-
-        Object lock = new Object();
+        Lock lock = new ReentrantLock();
 
         Player player1 = new Player("ping", lock);
         Player player2 = new Player("pong", lock);
@@ -30,7 +32,7 @@ public class Game {
 
         //Let the players play!
         try {
-            Thread.sleep(2); //hilo principal se queda dormido durante 2 seg
+            Thread.sleep(10);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -49,5 +51,4 @@ public class Game {
 
         System.out.println("Game finished!");
     }
-
 }
